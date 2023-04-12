@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class CoinChangeGreedy {
+
+    static final int[] COINS = {20, 10, 5, 1};
+
+    static void coinChange(int amount) {
+        int count = 0;
+        for (int coin : COINS) {
+            while (amount >= coin) {
+                count++;
+                amount -= coin;
+            }
+        }
+
+        System.out.println("Minimum number of coins: " + count);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter amount for change: ");
+        int amount = scanner.nextInt();
+        scanner.close();
+
+        coinChange(amount);
+    }
+}
