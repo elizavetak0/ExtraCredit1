@@ -1,0 +1,30 @@
+COINS = [20, 10, 5, 1]
+min_combination = []
+
+def coin_change(amount, combination):
+    global min_combination
+    if amount == 0:
+        # Print current combination
+        print(combination)
+
+        # Update minimum combination if necessary
+        if min_combination == [] or len(combination) < len(min_combination):
+            min_combination = combination[:]
+
+        return
+
+    for coin in COINS:
+        if amount >= coin:
+            # Choose coin and recursively call coinChange with reduced amount
+            combination.append(coin)
+            coin_change(amount - coin, combination)
+
+            # Backtrack by removing last coin from combination
+            combination.pop()
+
+if __name__ == '__main__':
+    amount = int(input("Enter amount for change: "))
+    coin_change(amount, [])
+
+    # Print minimum combination
+    print("\nMinimum combination:", min_combination)
